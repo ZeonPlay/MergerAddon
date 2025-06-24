@@ -105,7 +105,7 @@ Kontribusi sangat terbuka! Silakan lakukan _fork_ dan _pull request_ untuk:
 
 ## Lisensi
 
-Proyek ini dilisensikan di bawah [MIT License](LICENSE).
+Proyek ini dilisensikan di bawah **MIT License**.
 
 ---
 
@@ -119,7 +119,7 @@ Proyek ini dilisensikan di bawah [MIT License](LICENSE).
 
 ## Kontak & Dukungan
 
-Untuk pertanyaan, saran, atau pelaporan bug, silakan buka [Issue](https://github.com/username/MergerAddon/issues) di GitHub.
+Untuk pertanyaan, saran, atau pelaporan bug, silakan buka [Issue](https://github.com/ZeonPlay/MergerAddon/issues) di GitHub.
 
 ---
 
