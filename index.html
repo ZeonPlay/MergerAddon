@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft Addon Merger</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuid.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container" style="text-align:center;">
+            <span class="material-icons-outlined" style="font-size:3rem;color:#2196f3;filter: drop-shadow(0 0 0 black);">extension</span>
+            <h1 style="margin-bottom:0.2em;">Minecraft Addon Merger</h1>
+            <p style="color:black;">Gabungkan berbagai addon Minecraft Bedrock menjadi satu paket terintegrasi</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Upload Addon -->
+        <div class="card">
+            <h2><span class="material-icons">upload_file</span> Unggah Addon</h2>
+            <div class="upload-area" id="dropZone">
+                <span class="material-icons" style="font-size:2.5rem;color:#90caf9;">folder_open</span>
+                <h3>Seret & Jatuhkan File Addon ke Sini</h3>
+                <p>atau</p>
+                <button class="btn" id="browseBtn"><span class="material-icons" style="font-size:1.1em;vertical-align:middle;">file_upload</span> Pilih File</button>
+                <p style="font-size:0.95em;color:#888;">Format: .mcpack, .mcaddon, .zip</p>
+                <input type="file" id="fileInput" accept=".mcpack,.mcaddon,.zip" multiple style="display: none;">
+            </div>
+            <div class="file-list" id="fileList">
+                <div class="status-message warning" id="emptyMessage">
+                    Belum ada file addon yang diunggah
+                </div>
+            </div>
+        </div>
+
+        <!-- Card lain dibungkus -->
+        <div id="mainSections" style="display:none;">
+            <!-- Metadata -->
+            <div class="card">
+                <h2><span class="material-icons">settings</span> Metadata Addon</h2>
+                <div class="metadata-form">
+                    <div class="form-group">
+                        <label for="addonName">Nama Addon</label>
+                        <input type="text" id="addonName" placeholder="Nama addon hasil gabungan">
+                    </div>
+                    <div class="form-group">
+                        <label for="addonDesc">Deskripsi</label>
+                        <input type="text" id="addonDesc" placeholder="Deskripsi addon hasil gabungan">
+                    </div>
+                    <div class="form-group">
+                        <label for="addonVersion">Versi</label>
+                        <input type="text" id="addonVersion" value="1.0.0" placeholder="Contoh: 1.0.0">
+                    </div>
+                    <div class="form-group">
+                        <label for="engineVersion">Min. Engine Version</label>
+                        <input type="text" id="engineVersion" value="1.21.90" placeholder="Contoh: 1.21.90">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Preview File -->
+            <div class="card">
+                <h2><span class="material-icons">search</span> Pratinjau File</h2>
+                <div class="preview-container">
+                    <div class="file-tree" id="fileTree">
+                        <div class="preview-placeholder">
+                            <span class="material-icons" style="font-size:2.2rem;color:#bdbdbd;">folder</span>
+                            <p>Belum ada file untuk dipratinjau</p>
+                            <p>Unggah addon terlebih dahulu</p>
+                        </div>
+                    </div>
+                    <div class="preview-content" id="previewContent">
+                        <div class="preview-placeholder">
+                            <span class="material-icons" style="font-size:2.2rem;color:#bdbdbd;">search</span>
+                            <p>Pilih file untuk dipratinjau</p>
+                            <p style="font-size:0.95em;color:#888;">Format didukung: PNG, JSON, JS</p>
+                        </div>
+                    </div>
+                </div>
+                <p style="color:#888;font-size:0.95em;">Preview file hanya akan dimuat saat diklik untuk mempercepat proses.</p>
+            </div>
+
+            <!-- Proses Penggabungan -->
+            <div class="card">
+                <h2><span class="material-icons">merge_type</span> Proses Penggabungan</h2>
+                <div class="progress-container">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                <div class="status-message" id="statusMessage">
+                    Siap untuk memulai proses penggabungan
+                </div>
+                <div style="text-align: center; margin-top: 20px;">
+                    <button class="btn" id="processBtn"><span class="material-icons" style="font-size:1.1em;vertical-align:middle;">play_arrow</span> Mulai Penggabungan</button>
+                    <button class="btn btn-secondary" id="resetBtn"><span class="material-icons" style="font-size:1.1em;vertical-align:middle;">refresh</span> Reset Semua</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container" style="text-align:center;">
+            <p style="margin-bottom:0.2em;">© 2025 Minecraft Addon Merger</p>
+            <p style="font-size:0.95em;color:#888;">Semua proses berjalan di browser Anda - tidak ada data dikirim ke server</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
